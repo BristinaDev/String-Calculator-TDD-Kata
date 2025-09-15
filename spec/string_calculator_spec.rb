@@ -18,8 +18,16 @@ RSpec.describe StringCalculator do
 			expect(StringCalculator.add("1,2,3")).to eq(6)
 		end
 
-		it "adds numbers with newline as delimiter" do
+		it "add numbers even with escape sequence in middle" do
 			expect(StringCalculator.add("1\n2,3")).to eq(6)
+		end
+
+		it "add with mutiple delimeters" do
+			expect(StringCalculator.add("//;\n1;2")).to eq(3)
+		end
+
+		it "raise error when negative numbers are presents" do
+			expect { StringCalculator.add("1,-2,-3") }.to raise_error("negative numbers not allowed -2, -3")
 		end
 	end
 end
